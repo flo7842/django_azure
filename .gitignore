@@ -1,0 +1,4 @@
+/venv
+.vscode
+.deployment
+DigiCertGlobalRootCA.crt.pem

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import environ
+
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
@@ -41,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django-cors-headers',
-    'mysqlclient',
+    'environ',
+    'corsheaders',
     'todo_api'
 ]
 
@@ -83,19 +84,15 @@ WSGI_APPLICATION = 'todo.wsgi.application'
 DATABASES = {
 
     'default': {
-
         'ENGINE': 'django.db.backends.mysql',
-
-        'NAME': env('DATABASE_NAME'),                     
-
-        'USER': env('DATABASE_USER'),                     
-
-        'PASSWORD': env('DATABASE_PASSWORD'),                  
-
-        'HOST': 'MySQL-SERVER-NAME',                     
-
-        'PORT': '',
-
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'), 
+        'PASSWORD': env('DATABASE_PASSWORD'),              
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
+        'OPTIONS':  {
+            'ssl': {'ca': './DigiCertGlobalRootCA.crt.pem'},
+        }
     }
 
 }  

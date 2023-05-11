@@ -1,9 +1,9 @@
 
-from django.urls import re_path, include
+from django.urls import path, include
 from .views import (
     TodoListApiView,
 )
 
 urlpatterns = [
-    re_path('api', TodoListApiView.as_view()),
+    path('api', TodoListApiView.as_view()),
 ]
