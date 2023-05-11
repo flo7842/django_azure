@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import environ
+import os
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
@@ -41,8 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django-cors-headers',
-    'mysqlclient',
     'todo_api'
 ]
 
@@ -76,6 +75,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'todo.wsgi.application'
 
+ALLOWED_HOSTS = ['*']
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -83,19 +83,8 @@ WSGI_APPLICATION = 'todo.wsgi.application'
 DATABASES = {
 
     'default': {
-
-        'ENGINE': 'django.db.backends.mysql',
-
-        'NAME': env('DATABASE_NAME'),                     
-
-        'USER': env('DATABASE_USER'),                     
-
-        'PASSWORD': env('DATABASE_PASSWORD'),                  
-
-        'HOST': 'MySQL-SERVER-NAME',                     
-
-        'PORT': '',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 
 }  
