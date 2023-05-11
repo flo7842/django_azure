@@ -5,5 +5,5 @@ from .views import (
 )
 
 urlpatterns = [
-    path('api', TodoListApiView.as_view()),
+    path('todos', TodoListApiView.as_view()),
 ]
