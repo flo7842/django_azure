@@ -6,8 +6,6 @@ from .models import Todo
 from .serializers import TodoSerializer
 
 class TodoListApiView(APIView):
-    # add permission to check if user is authenticated
-    permission_classes = [permissions.IsAuthenticated]
 
     # 1. List all
     def get(self, request, *args, **kwargs):
@@ -15,6 +13,7 @@ class TodoListApiView(APIView):
         List all the todo items for given requested user
         '''
         todos = Todo.objects.filter(user = request.user.id)
+        print(todos)
         serializer = TodoSerializer(todos, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -23,6 +22,7 @@ class TodoListApiView(APIView):
         '''
         Create the Todo with given todo data
         '''
+        print(request.user.id, "request.user.id")
         data = {
             'task': request.data.get('task'), 
             'completed': request.data.get('completed'), 
