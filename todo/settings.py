@@ -12,10 +12,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os, datetime
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -93,7 +97,8 @@ WSGI_APPLICATION = 'todo.wsgi.application'
 
 CORS_ORIGIN_ALLOW_ALL = False  # Set to True to allow all origins
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:4200',  # Add your Angular app's URL here
+    'http://localhost:4200',
+    env('FRONT_APP')  # Add your Angular app's URL here
     # Other whitelisted URLs
 ]
 
