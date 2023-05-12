@@ -102,7 +102,7 @@ CORS_ORIGIN_WHITELIST = [
     # Other whitelisted URLs
 ]
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', env('FRONT_APP'), env('API_HOST')]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
