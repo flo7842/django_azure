@@ -9,7 +9,7 @@ from .serializers import ImageSerializer
 from django.http import JsonResponse
 
 class ImageViewSet(APIView):
-    #permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     
 # Create your views here.
